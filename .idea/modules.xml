@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SSM.iml" filepath="$PROJECT_DIR$/SSM.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpringIoc/SpringIoc.iml" filepath="$PROJECT_DIR$/SpringIoc/SpringIoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring/Spring.iml" filepath="$PROJECT_DIR$/Spring/Spring.iml" />
     </modules>
   </component>
 </project>
