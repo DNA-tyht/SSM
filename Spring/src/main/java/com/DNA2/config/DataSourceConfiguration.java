@@ -33,4 +33,5 @@ public class DataSourceConfiguration {
         druidDataSource.setUsername(username);
         druidDataSource.setPassword(password);
         return druidDataSource;
-    }}
+    }
+}

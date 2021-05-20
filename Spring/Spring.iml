@@ -20,6 +20,7 @@
         <fileset id="fileset" name="Spring Application Context" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-DNA1.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext-DNA2.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext-DNA3.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
         </fileset>
       </configuration>
@@ -51,5 +52,6 @@
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.1.10" level="project" />
     <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-test:5.0.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.4" level="project" />
   </component>
 </module>
