@@ -26,9 +26,9 @@ public class SpringJunitTest {
     @Autowired
     private DataSource dataSource;
 
-    @Test
-    public void test1() throws SQLException {
-        userService.save();
-        System.out.println(dataSource.getConnection());
-    }
+    //@Test
+    //public void test1() throws SQLException {
+    //    userService.save();
+    //    System.out.println(dataSource.getConnection());
+    //}
 }

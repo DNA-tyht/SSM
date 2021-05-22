@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Import;
  * @Version 1.0
  * @Date 2021/5/19 9:20
  */
-//标志该类是Spring核心配置类
-@Configuration
+////标志该类是Spring核心配置类
+//@Configuration
 //配置组件扫描
 @ComponentScan("com.DNA2")
 @Import({DataSourceConfiguration.class})
