@@ -7,15 +7,15 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--  目标对象  -->
-    <bean id="target" class="com.DNA3.aop.Target"/>
+    <bean id="target" class="DNA3.aop.Target"/>
     <!--  切面对象  -->
-    <bean id="myAspect" class="com.DNA3.aop.MyAspect"/>
+    <bean id="myAspect" class="DNA3.aop.MyAspect"/>
     <!--  配置织入，哪些方法需要哪些增强  -->
     <aop:config>
         <!--  声明切面  -->
         <aop:aspect ref="myAspect">
             <!--  抽取切点表达式  -->
-            <aop:pointcut id="myPointcut" expression="execution(* com.DNA3.aop.*.*(..))"/>
+            <aop:pointcut id="myPointcut" expression="execution(* DNA3.aop.*.*(..))"/>
             <!--  声明增强和被增强的方法  -->
             <aop:before method="before" pointcut-ref="myPointcut"/>
             <aop:after-returning method="afterReturning" pointcut-ref="myPointcut"/>
