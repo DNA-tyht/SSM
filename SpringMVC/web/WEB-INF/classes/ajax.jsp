@@ -5,8 +5,8 @@
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
     <script>
         var userList = new Array();
-        userList.push({username:"zhangsan",age:18});
-        userList.push({username:"lisi",age:28});
+        userList.push({username:"张三",age:18});
+        userList.push({username:"李四",age:28});
 
         $.ajax({
             type:"POST",
@@ -14,7 +14,6 @@
             data:JSON.stringify(userList),
             contentType:"application/json;charset=utf-8"
         });
-
     </script>
 </head>
 <body>
