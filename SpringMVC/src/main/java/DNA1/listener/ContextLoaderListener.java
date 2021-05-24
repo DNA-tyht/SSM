@@ -7,13 +7,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-/**
- * @Description
- * @Author 脱氧核糖
- * @Version 1.0
- * @Date 2021/5/22 19:53
- */
 public class ContextLoaderListener implements ServletContextListener {
+
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
         //读取web.xml中的全局参数

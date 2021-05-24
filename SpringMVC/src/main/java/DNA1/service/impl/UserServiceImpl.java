@@ -1,7 +1,7 @@
 package DNA1.service.impl;
 
-import DNA1.dao.UserDao;
 import DNA1.service.UserService;
+import DNA1.dao.UserDao;
 
 public class UserServiceImpl implements UserService {
 
