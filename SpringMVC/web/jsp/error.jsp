@@ -9,6 +9,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>error</h1>
+<h1>通用异常</h1>
+<h1>${}</h1>
 </body>
 </html>

@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TargetController {
-
     @RequestMapping("/target")
     public ModelAndView show(){
         System.out.println("目标资源执行......");
@@ -16,5 +15,4 @@ public class TargetController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
-
 }

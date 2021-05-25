@@ -57,4 +57,18 @@
             <bean class="DNA2.interceptor.MyInterceptor2"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+<!--    &lt;!&ndash;  配置异常处理器  &ndash;&gt;-->
+<!--    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+<!--        <property name="exceptionMappings">-->
+<!--            <map>-->
+<!--                <entry key="java.lang.ClassCastException" value="error1"/>-->
+<!--                <entry key="DNA3.exception.MyException" value="error2"/>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--&lt;!&ndash;        <property name="defaultErrorView" value="error"/>&ndash;&gt;-->
+<!--    </bean>-->
+
+    <!--  自定义异常处理器  -->
+    <bean id="myExceptionResolver" class="DNA3.resolver.MyExceptionResolver"/>
 </beans>
