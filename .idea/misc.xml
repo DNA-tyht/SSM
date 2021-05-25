@@ -9,8 +9,10 @@
       <list>
         <option value="$PROJECT_DIR$/Spring/pom.xml" />
         <option value="$PROJECT_DIR$/itheima_spring_mvc/pom.xml" />
-        <option value="$PROJECT_DIR$/SpringMVC/pom.xml" />
         <option value="$PROJECT_DIR$/SpringDemo/pom.xml" />
+        <option value="$PROJECT_DIR$/SpringMVC/pom.xml" />
+        <option value="$PROJECT_DIR$/t/pom.xml" />
+        <option value="$PROJECT_DIR$/Demo/pom.xml" />
       </list>
     </option>
   </component>
