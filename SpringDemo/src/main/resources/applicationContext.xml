@@ -23,8 +23,15 @@
     <bean id="roleDao" class="DNA.dao.Impl.RoleDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
-
     <bean id="roleService" class="DNA.service.Impl.RoleServiceImpl">
+        <property name="roleDao" ref="roleDao"/>
+    </bean>
+
+    <bean id="userDao" class="DNA.dao.Impl.UserDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean id="userService" class="DNA.service.Impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
         <property name="roleDao" ref="roleDao"/>
     </bean>
 </beans>

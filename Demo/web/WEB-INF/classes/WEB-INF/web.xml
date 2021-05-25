@@ -32,7 +32,6 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-
     <!--全局初始化参数-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -43,5 +42,4 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
 </web-app>

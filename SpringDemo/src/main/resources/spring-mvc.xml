@@ -18,8 +18,19 @@
     </bean>
 
     <!--  mvc的注解驱动  -->
-    <!--   自动加载处理映射器和处理适配器  -->
+    <!--  自动加载处理映射器和处理适配器  -->
     <mvc:annotation-driven/>
 
     <mvc:default-servlet-handler/>
+
+    <!--  拦截器  -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--  拦截路径  -->
+            <mvc:mapping path="/**"/>
+            <!--  放行路径  -->
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="DNA.interceptor.PrivilegeInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

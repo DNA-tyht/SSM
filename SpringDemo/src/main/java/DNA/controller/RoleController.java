@@ -5,7 +5,6 @@ import DNA.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -24,11 +23,17 @@ public class RoleController {
 
     @RequestMapping(value = "/list")
     public ModelAndView list(ModelAndView modelAndView) {
-        List<Role> roleList = roleService.list();
+        List<Role> roleList = roleService.queryAllRole();
         //设置模型
         modelAndView.addObject("roleList", roleList);
         //设置视图
         modelAndView.setViewName("role-list");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/save")
+    public String save(Role role) {
+        roleService.addRole(role);
+        return "redirect:/role/list";
     }
 }

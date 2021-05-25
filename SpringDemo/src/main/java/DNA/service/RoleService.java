@@ -17,5 +17,13 @@ public interface RoleService {
     * @Author 脱氧核糖
     * @Date 2021/5/25 15:58
     */
-    List<Role> list();
+    List<Role> queryAllRole();
+
+    /**
+    * @Description 添加一条角色信息
+    * @Return [role]
+    * @Author 脱氧核糖
+    * @Date 2021/5/25 20:02
+    */
+    void addRole(Role role);
 }

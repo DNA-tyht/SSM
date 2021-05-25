@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Spring:war exploded">
-    <output-path>$PROJECT_DIR$/Spring/web/WEB-INF/classes</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/Spring_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

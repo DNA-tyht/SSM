@@ -1,5 +1,7 @@
 package DNA.domain;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author 脱氧核糖
@@ -12,16 +14,19 @@ public class User {
     private String email;
     private String password;
     private String phoneNum;
+    //当前用户具备的角色
+    private List<Role> roles;
 
     public User() {
     }
 
-    public User(Long id, String username, String email, String password, String phoneNum) {
+    public User(Long id, String username, String email, String password, String phoneNum, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNum = phoneNum;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -64,6 +69,14 @@ public class User {
         this.phoneNum = phoneNum;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -72,6 +85,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

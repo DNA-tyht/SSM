@@ -17,5 +17,21 @@ public interface RoleDao {
     * @Author 脱氧核糖
     * @Date 2021/5/25 16:02
     */
-    public List<Role> queryAll();
+    public List<Role> queryAllRole();
+
+    /**
+    * @Description 添加一条角色信息
+    * @Return [role]
+    * @Author 脱氧核糖
+    * @Date 2021/5/25 20:07
+    */
+    void addRole(Role role);
+
+    /**
+    * @Description 根据用户id查询角色信息
+    * @Return [id]
+    * @Author 脱氧核糖
+    * @Date 2021/5/25 20:46
+    */
+    List<Role> queryRoleByUserId(Long id);
 }
