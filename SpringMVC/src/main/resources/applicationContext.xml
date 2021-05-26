@@ -17,10 +17,10 @@
     </bean>
 
     <!--配置Dao-->
-    <bean id="userDao" class="DNA1.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDao" class="DNA.dao.impl.UserDaoImpl"></bean>
 
     <!--配置service-->
-    <bean id="userService" class="DNA1.service.impl.UserServiceImpl">
+    <bean id="userService" class="DNA.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
     </bean>
 
