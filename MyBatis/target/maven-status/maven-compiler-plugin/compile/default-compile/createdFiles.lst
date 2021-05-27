@@ -1,7 +1,0 @@
-DNA\test\UserMapperTest.class
-DNA\utils\SqlSessionUtils.class
-DNA\handler\DateTypeHandler.class
-DNA\dao\UserMapper.class
-DNA\domain\User.class
-DNA\service\UserServiceDemo.class
-DNA\test\MyBatisTest.class

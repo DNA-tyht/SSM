@@ -6,6 +6,7 @@
     <!--  自定义别名  -->
     <typeAliases>
         <typeAlias type="DNA.domain.User" alias="user"/>
+        <typeAlias type="DNA.domain.Order" alias="order"/>
     </typeAliases>
 
     <!--  自定义注册类型处理器  -->
@@ -36,5 +37,6 @@
     <!--  加载映射文件  -->
     <mappers>
         <mapper resource="DNA.mapper/UserMapper.xml"/>
+        <mapper resource="DNA.mapper/OrderMapper.xml"/>
     </mappers>
 </configuration>
