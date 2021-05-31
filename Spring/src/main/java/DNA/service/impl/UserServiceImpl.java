@@ -1,6 +1,6 @@
 package DNA.service.impl;
 
-import DNA.dao.UserDao;
+import DNA.mapper.UserDao;
 import DNA.service.UserService;
 
 /**

@@ -1,9 +1,8 @@
 package DNA.service.Impl;
 
-import DNA.dao.RoleDao;
+import DNA.mapper.RoleDao;
 import DNA.domain.Role;
 import DNA.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 

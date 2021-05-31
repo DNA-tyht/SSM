@@ -1,7 +1,7 @@
 package DNA.factory;
 
-import DNA.dao.Impl.UserDaoImpl;
-import DNA.dao.UserDao;
+import DNA.mapper.Impl.UserDaoImpl;
+import DNA.mapper.UserDao;
 
 /**
  * @Description

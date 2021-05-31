@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+">
+<!--    &lt;!&ndash;  配置缓存管理器  &ndash;&gt;-->
+<!--    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">-->
+<!--        <property name="cacheManager" ref=""/>-->
+<!--    </bean>-->
+
+    <!--  配置Realm  -->
+    <bean id="jdbcRealm" class="DNA.realm.ShiroRealm">
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="jdbcRealm"/>
+    </bean>
+
+    <!--  配置生命周期  -->
+
+    <!--  配置ShiroFilter  -->
+    <!--  id必须和web.xml中配置的DelegatingFilterProxy的filter-name一致  -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.jsp"/>
+        <property name="successUrl" value="/list.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!--
+            配置哪些页面需要受保护
+            以及访问页面需要的权限
+        -->
+        <property name="filterChainDefinitions">
+            <value>
+                /login.jsp = anon
+                /** = authc
+            </value>
+        </property>
+    </bean>
+</beans>

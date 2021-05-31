@@ -1,7 +1,7 @@
 package DNA.service.impl;
 
 import DNA.service.UserService;
-import DNA.dao.UserDao;
+import DNA.mapper.UserDao;
 
 public class UserServiceImpl implements UserService {
 

@@ -1,6 +1,6 @@
 package DNA.test;
 
-import DNA.dao.UserMapper;
+import DNA.mapper.UserMapper;
 import DNA.domain.User;
 import DNA.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;

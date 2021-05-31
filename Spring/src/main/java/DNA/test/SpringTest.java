@@ -1,6 +1,6 @@
 package DNA.test;
 
-import DNA.dao.UserDao;
+import DNA.mapper.UserDao;
 import DNA.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

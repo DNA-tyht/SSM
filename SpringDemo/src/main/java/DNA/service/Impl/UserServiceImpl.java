@@ -1,7 +1,7 @@
 package DNA.service.Impl;
 
-import DNA.dao.RoleDao;
-import DNA.dao.UserDao;
+import DNA.mapper.RoleDao;
+import DNA.mapper.UserDao;
 import DNA.domain.Role;
 import DNA.domain.User;
 import DNA.service.UserService;

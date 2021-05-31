@@ -1,6 +1,6 @@
 package DNA.test;
 
-import DNA.dao.OrderMapper;
+import DNA.mapper.OrderMapper;
 import DNA.domain.Order;
 import DNA.utils.SqlSessionUtils;
 import org.apache.ibatis.session.SqlSession;

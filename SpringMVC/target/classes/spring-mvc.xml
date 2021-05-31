@@ -10,7 +10,7 @@
 ">
 
     <!--  Controller的组件扫描  -->
-    <context:component-scan base-package="DNA1 DNA2">
+    <context:component-scan base-package="DNA DNA2">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -35,7 +35,7 @@
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <list>
-                <bean class="DNA1.converter.DateConverter"/>
+                <bean class="DNA.converter.DateConverter"/>
             </list>
         </property>
     </bean>

@@ -1,19 +1,14 @@
 package DNA.test;
 
-import DNA.dao.UserMapper;
+import DNA.mapper.UserMapper;
 import DNA.domain.User;
 import DNA.utils.SqlSessionUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
-import sun.java2d.pipe.SpanIterator;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
