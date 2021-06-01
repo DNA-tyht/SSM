@@ -1,5 +1,7 @@
 package DNA.mapper;
 
+import DNA.bean.Department;
+import DNA.bean.DepartmentExample;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +19,27 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class DepartmentMapperTest {
     @Autowired
     DepartmentMapper departmentMapper;
-    @Test
-    public void countByExample() {
-        System.out.println(departmentMapper);
-    }
+    Department department = new Department(3, "运维部");
+    DepartmentExample departmentExample = new DepartmentExample();
 
     @Test
-    public void deleteByExample() {
+    public void countByExample() {
+        System.out.println(departmentMapper.countByExample(departmentExample));
     }
 
     @Test
     public void deleteByPrimaryKey() {
+        System.out.println(departmentMapper.deleteByPrimaryKey(3));
     }
 
     @Test
     public void insert() {
+        System.out.println(departmentMapper.insert(department));
     }
 
     @Test
     public void insertSelective() {
+        System.out.println(departmentMapper.insertSelective(department));
     }
 
     @Test

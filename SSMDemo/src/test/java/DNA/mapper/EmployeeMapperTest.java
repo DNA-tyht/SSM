@@ -1,6 +1,10 @@
 package DNA.mapper;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.*;
 
@@ -10,18 +14,15 @@ import static org.junit.Assert.*;
  * @Version 1.0
  * @Date 2021/5/31 22:52
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationConfig.xml"})
 public class EmployeeMapperTest {
-
-    @Test
-    public void countByExample() {
-    }
-
-    @Test
-    public void deleteByExample() {
-    }
+    @Autowired
+    EmployeeMapper employeeMapper;
 
     @Test
     public void deleteByPrimaryKey() {
+        System.out.println(employeeMapper.deleteByPrimaryKey(3));
     }
 
     @Test

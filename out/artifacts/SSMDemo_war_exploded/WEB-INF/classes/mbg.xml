@@ -30,7 +30,7 @@
         </sqlMapGenerator>
 
         <!-- 指定dao接口生成的位置，mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="DNA.dao" targetProject=".\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="DNA.mapper" targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 

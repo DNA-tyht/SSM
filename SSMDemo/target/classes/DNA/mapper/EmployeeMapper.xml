@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="DNA.mapper.EmployeeMapper">
   <resultMap id="BaseResultMap" type="DNA.bean.Employee">
     <id column="emp_id" jdbcType="INTEGER" property="empId" />
@@ -22,6 +21,9 @@
     </association>
   </resultMap>
 
+  <sql id="WithDept_Column_List">
+    e.emp_id, e.emp_name, e.gender, e.email, e.d_id,d.dept_id,d.dept_name
+  </sql>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -83,11 +85,26 @@
   <sql id="Base_Column_List">
     emp_id, emp_name, gender, email, d_id
   </sql>
-  <sql id="WithDept_Column_List">
-    e.emp_id, e.emp_name, e.gender, e.email, e.d_id,d.dept_id,d.dept_name
-  </sql>
-
-  <!-- 查询员工同时带部门信息 -->
+  <select id="selectByExample" parameterType="DNA.bean.EmployeeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where emp_id = #{empId,jdbcType=INTEGER}
+  </select>
   <select id="selectByExampleWithDept" resultMap="WithDeptResultMap">
     select
     <if test="distinct">
@@ -95,7 +112,7 @@
     </if>
     <include refid="WithDept_Column_List" />
     FROM employee e
-    left join department d on e.d_id = d.dept_id
+    left join department d on e.d_id=d.dept_id
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -107,49 +124,27 @@
     select
     <include refid="WithDept_Column_List" />
     FROM employee e
-    left join department d on e.d_id = d.dept_id
-    where emp_id = #{empId,jdbcType=INTEGER}
-  </select>
-
-  <!-- 查询员工不带部门信息的 -->
-  <select id="selectByExample" parameterType="DNA.bean.EmployeeExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_emp
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from tbl_emp
+    left join department d on e.`d_id`=d.`dept_id`
     where emp_id = #{empId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tbl_emp
+    delete from employee
     where emp_id = #{empId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="DNA.bean.EmployeeExample">
-    delete from tbl_emp
+    delete from employee
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="DNA.bean.Employee">
-    insert into tbl_emp (emp_id, emp_name, gender,
-                         email, d_id)
-    values (#{empId,jdbcType=INTEGER}, #{empName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR},
-            #{email,jdbcType=VARCHAR}, #{dId,jdbcType=INTEGER})
+    insert into employee (emp_id, emp_name, gender, 
+      email, d_id)
+    values (#{empId,jdbcType=INTEGER}, #{empName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
+      #{email,jdbcType=VARCHAR}, #{dId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="DNA.bean.Employee">
-    insert into tbl_emp
+    insert into employee
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="empId != null">
         emp_id,
@@ -186,13 +181,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="DNA.bean.EmployeeExample" resultType="java.lang.Long">
-    select count(*) from tbl_emp
+    select count(*) from employee
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tbl_emp
+    update employee
     <set>
       <if test="record.empId != null">
         emp_id = #{record.empId,jdbcType=INTEGER},
@@ -215,18 +210,18 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tbl_emp
+    update employee
     set emp_id = #{record.empId,jdbcType=INTEGER},
-    emp_name = #{record.empName,jdbcType=VARCHAR},
-    gender = #{record.gender,jdbcType=CHAR},
-    email = #{record.email,jdbcType=VARCHAR},
-    d_id = #{record.dId,jdbcType=INTEGER}
+      emp_name = #{record.empName,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=CHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      d_id = #{record.dId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="DNA.bean.Employee">
-    update tbl_emp
+    update employee
     <set>
       <if test="empName != null">
         emp_name = #{empName,jdbcType=VARCHAR},
@@ -244,11 +239,11 @@
     where emp_id = #{empId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="DNA.bean.Employee">
-    update tbl_emp
+    update employee
     set emp_name = #{empName,jdbcType=VARCHAR},
-        gender = #{gender,jdbcType=CHAR},
-        email = #{email,jdbcType=VARCHAR},
-        d_id = #{dId,jdbcType=INTEGER}
+      gender = #{gender,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      d_id = #{dId,jdbcType=INTEGER}
     where emp_id = #{empId,jdbcType=INTEGER}
   </update>
 </mapper>

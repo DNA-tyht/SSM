@@ -9,7 +9,7 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 ">
     <!--  扫描controller  -->
-    <context:component-scan base-package="DNA" use-default-filters="false">
+    <context:component-scan base-package="DNA.controller" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 

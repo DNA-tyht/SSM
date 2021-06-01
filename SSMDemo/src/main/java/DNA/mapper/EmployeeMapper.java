@@ -3,8 +3,11 @@ package DNA.mapper;
 import DNA.bean.Employee;
 import DNA.bean.EmployeeExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface EmployeeMapper {
     long countByExample(EmployeeExample example);
 
@@ -19,6 +22,10 @@ public interface EmployeeMapper {
     List<Employee> selectByExample(EmployeeExample example);
 
     Employee selectByPrimaryKey(Integer empId);
+
+    List<Employee> selectByExampleWithDept(EmployeeExample example);
+
+    Employee selectByPrimaryKeyWithDept(Integer empId);
 
     int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
 

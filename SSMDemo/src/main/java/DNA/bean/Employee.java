@@ -1,15 +1,25 @@
 package DNA.bean;
 
+import org.springframework.stereotype.Repository;
+
 public class Employee {
     private Integer empId;
-
     private String empName;
-
     private String gender;
-
     private String email;
-
     private Integer dId;
+    private Department department;
+
+    public Employee() {
+    }
+
+    public Employee(Integer empId, String empName, String gender, String email, Integer dId) {
+        this.empId = empId;
+        this.empName = empName;
+        this.gender = gender;
+        this.email = email;
+        this.dId = dId;
+    }
 
     public Integer getEmpId() {
         return empId;
@@ -49,5 +59,13 @@ public class Employee {
 
     public void setdId(Integer dId) {
         this.dId = dId;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
