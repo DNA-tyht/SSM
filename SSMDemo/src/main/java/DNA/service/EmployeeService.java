@@ -1,6 +1,7 @@
 package DNA.service;
 
 import DNA.bean.Employee;
+import DNA.bean.EmployeeExample;
 import DNA.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,18 @@ public class EmployeeService {
 
     public List<Employee> getAll() {
         return employeeMapper.selectByExampleWithDept(null);
+    }
+
+    public void saveEmp(Employee employee) {
+        employeeMapper.insertSelective(employee);
+    }
+
+
+    public boolean checkUser(String empName) {
+        EmployeeExample example = new EmployeeExample();
+        EmployeeExample.Criteria criteria = example.createCriteria();
+        criteria.andEmpNameEqualTo(empName);
+        long count = employeeMapper.countByExample(example);
+        return count == 0;
     }
 }

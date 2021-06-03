@@ -2,13 +2,16 @@ DNA\bean\Employee.class
 DNA\controller\EmployeeController.class
 DNA\bean\EmployeeExample$GeneratedCriteria.class
 DNA\bean\EmployeeExample.class
+DNA\controller\DepartmentController.class
 DNA\bean\EmployeeExample$Criterion.class
 DNA\bean\DepartmentExample$Criteria.class
 DNA\bean\EmployeeExample$Criteria.class
 DNA\bean\DepartmentExample.class
+DNA\service\DepartmentService.class
 DNA\bean\DepartmentExample$Criterion.class
 DNA\mapper\EmployeeMapper.class
 DNA\bean\Department.class
+DNA\bean\Msg.class
 DNA\mapper\DepartmentMapper.class
 DNA\service\EmployeeService.class
 DNA\bean\DepartmentExample$GeneratedCriteria.class

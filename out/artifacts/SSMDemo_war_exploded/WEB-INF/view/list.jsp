@@ -49,12 +49,10 @@
 							<th>${emp.department.deptName}</th>
 							<th>
 								<button class="btn btn-primary btn-sm">
-									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-									编辑
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑
 								</button>
 								<button class="btn btn-danger btn-sm">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-									删除
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
 								</button>
 							</th>
 						</tr>
@@ -64,10 +62,10 @@
 		</div>
 		<!--  分页信息  -->
 		<div class="row">
-			<!--分页文字信息  -->
+			<!--  分页文字信息  -->
 			<div class="col-md-6">当前 ${pageInfo.pageNum}页,总${pageInfo.pages}
 				页,总 ${pageInfo.total} 条记录</div>
-			<!-- 分页条信息 -->
+			<!--  分页条信息  -->
 			<div class="col-md-6">
 				<nav aria-label="Page navigation">
 				<ul class="pagination">
@@ -79,7 +77,6 @@
 							</a>
 						</li>
 					</c:if>
-
 					<c:forEach items="${pageInfo.navigatepageNums}" var="page_Num">
 						<c:if test="${page_Num == pageInfo.pageNum}">
 							<li class="active"><a href="#">${page_Num}</a></li>

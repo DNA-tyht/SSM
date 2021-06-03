@@ -1,7 +1,9 @@
 package DNA.bean;
 
 public class Department {
+    /**主键*/
     private Integer deptId;
+    /**部门名*/
     private String deptName;
 
     public Department() {
