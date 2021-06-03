@@ -4,10 +4,8 @@ import DNA.bean.Department;
 import DNA.bean.DepartmentExample;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface DepartmentMapper {
     long countByExample(DepartmentExample example);
 

@@ -24,8 +24,8 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @RequestMapping(value = "/emps")
-    public ModelAndView getEmps(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, ModelAndView modelAndView) {
-        PageHelper.startPage(pageNum, 5);
+    public ModelAndView getEmps(@RequestParam(value = "pn", defaultValue = "1") Integer pn, ModelAndView modelAndView) {
+        PageHelper.startPage(pn, 5);
         List<Employee> emps = employeeService.getAll();
         modelAndView.addObject("pageInfo", new PageInfo(emps, 5));
         modelAndView.setViewName("list");

@@ -1,7 +1,5 @@
 package DNA.bean;
 
-import org.springframework.stereotype.Repository;
-
 public class Department {
     private Integer deptId;
     private String deptName;

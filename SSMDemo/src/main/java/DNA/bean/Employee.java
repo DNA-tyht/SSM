@@ -1,7 +1,5 @@
 package DNA.bean;
 
-import org.springframework.stereotype.Repository;
-
 public class Employee {
     private Integer empId;
     private String empName;

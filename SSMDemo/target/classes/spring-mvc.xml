@@ -8,18 +8,19 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 ">
+    <!--  基本配置  -->
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/static/**" location="/static/"/>
+
     <!--  扫描controller  -->
-    <context:component-scan base-package="DNA.controller" use-default-filters="false">
+    <context:component-scan base-package="DNA.controller">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <!--  视图解析器  -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean id="resourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
-    <!--  基本配置  -->
-    <mvc:default-servlet-handler/>
-    <mvc:annotation-driven/>
 </beans>
