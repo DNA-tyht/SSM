@@ -39,6 +39,7 @@ public class EmployeeMapperTest {
 
     @Test
     public void selectByPrimaryKey() {
+        System.out.println(employeeMapper.selectByPrimaryKey(1));
     }
 
     @Test

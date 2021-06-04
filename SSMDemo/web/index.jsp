@@ -30,7 +30,7 @@
 	<div class="row">
 		<div class="col-md-4 col-md-offset-8">
 			<button class="btn btn-primary" id="emp_add_modal_btn">新增</button>
-			<button class="btn btn-danger">删除</button>
+			<button class="btn btn-danger" id="emp_delete_all_btn">删除</button>
 		</div>
 	</div>
 	<!--  表格数据  -->
@@ -39,6 +39,9 @@
 			<table class="table table-hover" id="emps_table">
 				<thead>
 					<tr>
+						<th>
+							<input type="checkbox" id="check_all"/>
+						</th>
 						<th>#</th>
 						<th>empName</th>
 						<th>gender</th>
@@ -60,7 +63,8 @@
 	</div>
 </div>
 <script type="text/javascript">
-	$(function(){
+	var totalRecord,currentPage;
+	$(function () {
 		//去首页
 		to_page(1);
 	});
@@ -94,10 +98,13 @@
 			var deptNameTd = $("<td></td>").append(item.department.deptName);
 			var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
 					.append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
+			editBtn.attr("edit-id", item.empId);
 			var delBtn =  $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
 					.append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
+			delBtn.attr("del-id", item.empId);
 			var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn);
-			$("<tr></tr>").append(checkBoxTd)
+			$("<tr></tr>")
+					.append(checkBoxTd)
 					.append(empIdTd)
 					.append(empNameTd)
 					.append(genderTd)
@@ -119,6 +126,8 @@
 		$("#page_info_area").append("当前 " + pageInfo.pageNum + " 页," +
 				"总 " + pageInfo.pages + " 页," +
 				"总 " + pageInfo.total + " 条记录");
+		totalRecord = result.extend.pageInfo.total;
+		currentPage = result.extend.pageInfo.pageNum;
 	}
 	/**
 	 * @Description 解析分页条
@@ -175,14 +184,25 @@
 		navEle.appendTo("#page_nav_area");
 	}
 	/**
+	* @Description 重置表单样式
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/3 21:37
+	*/
+	function reset_form(ele) {
+		$(ele)[0].reset();
+		$(ele).find("*").removeClass("has-error has-success");
+		$(ele).find(".help-block").text("");
+	}
+	/**
 	* @Description 点击新增按钮弹出模态框
 	* @Return
 	* @Author 脱氧核糖
 	* @Date 2021/6/3 15:45
 	*/
 	$("#emp_add_modal_btn").click(function () {
-		$("#empAddModal form")[0].reset();
-		getDepts();
+		reset_form("#empAddModal form");
+		getDepts("#empAddModal select");
 		$("#empAddModal").modal({
 			backdrop:"static"
 		});
@@ -193,15 +213,16 @@
 	* @Author 脱氧核糖
 	* @Date 2021/6/3 15:56
 	*/
-	function getDepts() {
+	function getDepts(ele) {
+		$(ele).empty();
 		$.ajax({
 			url:"${APP_PATH}/depts",
 			type:"GET",
 			success:function (result) {
-				$.each(result.extend.depts, function() {
+				$.each(result.extend.depts, function ()  {
 					var optionEle = $("<option></option>").append(this.deptName).attr("value", this.deptId);
-					optionEle.appendTo("#dept_add_select");
-				})
+					optionEle.appendTo(ele);
+				});
 			}
 		});
 	}
@@ -215,10 +236,10 @@
 		//清除当前元素的校验状态
 		$(ele).parent().removeClass("has-success has-error");
 		$(ele).next("span").text("");
-		if("success"=== status){
+		if ("success"=== status) {
 			$(ele).parent().addClass("has-success");
 			$(ele).next("span").text(msg);
-		}else if("error" === status){
+		} else if("error" === status) {
 			$(ele).parent().addClass("has-error");
 			$(ele).next("span").text(msg);
 		}
@@ -240,7 +261,7 @@
 		}
 
 		var email = $("#email_add_input").val();
-		var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+		var regEmail = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
 		if(!regEmail.test(email)) {
 			show_validate_msg("#empName_add_input", "error", "邮箱格式错误！")
 			return false;
@@ -265,7 +286,7 @@
 					show_validate_msg("#empName_add_input", "success", "用户名可用！");
 					$("#emp_save_btn").attr("ajax-va", "success");
 				} else {
-					show_validate_msg("#empName_add_input", "error", "用户名不可用！");
+					show_validate_msg("#empName_add_input", "error", result.extend.va_msg);
 					$("#emp_save_btn").attr("ajax-va", "error");
 				}
 			}
@@ -287,12 +308,136 @@
 		$.ajax({
 			url:"${APP_PATH}/emp",
 			type:"POST",
-			data:$("#dept_add_select").serialize(),
+			data:$("#empAddModal form").serialize(),
 			success:function (result) {
-				$("#empAddModal").modal('hide');
-				to_page(999);
+				if (result.code === 100) {
+					$("#empAddModal").modal('hide');
+					to_page(totalRecord);
+				} else {
+					if (result.extend.errorFields.email !== undefined) {
+						show_validate_msg("#empName_add_input", "error", "邮箱格式不正确！");
+					}
+					if (result.extend.errorFields.empName !== undefined) {
+						show_validate_msg("#empName_add_input", "error", "用户名是6-16位数字和字母的组合或2-5位中文！");
+					}
+				}
 			}
 		});
+	});
+	/**
+	* @Description 点击更新按钮弹出模态框
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/4 10:33
+	*/
+	$(document).on("click",".edit_btn",function ()  {
+		getDepts("#empUpdateModal select");
+		getEmp($(this).attr("edit-id"));
+		$("#emp_update_btn").attr("edit-id",$(this).attr("edit-id"));
+		$("#empUpdateModal").modal({
+			backdrop:"static"
+		});
+	});
+	/**
+	* @Description 获取员工信息
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/4 9:19
+	*/
+	function getEmp(id) {
+		$.ajax({
+			url:"${APP_PATH}/emp/" + id,
+			type:"GET",
+			success:function (result) {
+				var empData = result.extend.emp;
+				$("#empName_update_static").text(empData.empName);
+				$("#email_update_input").val(empData.email);
+				$("#empUpdateModal input[name=gender]").val([empData.gender]);
+				$("#empUpdateModal select").val([empData.dId]);
+			}
+		});
+	}
+	/**
+	* @Description 保存修改的信息
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/4 15:57
+	*/
+	$("#emp_update_btn").click(function () {
+		var email = $("#email_update_input").val();
+		var regEmail = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
+		if(!regEmail.test(email)) {
+			show_validate_msg("#email_update_input", "error", "邮箱格式不正确！");
+			return false;
+		} else {
+			show_validate_msg("#email_update_input", "success", "");
+		}
+		$.ajax({
+			url:"${APP_PATH}/emp/" + $(this).attr("edit-id"),
+			type:"PUT",
+			data:$("#empUpdateModal form").serialize(),
+			success:function () {
+				$("#empUpdateModal").modal("hide");
+				to_page(currentPage);
+			}
+		});
+	});
+	/**
+	* @Description 单个删除
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/4 16:03
+	*/
+	$(document).on("click", ".delete_btn", function () {
+		var empName = $(this).parents("tr").find("td:eq(2)").text();
+		var empId = $(this).attr("del-id");
+		if (confirm("确认删除【" + empName + "】？")) {
+			$.ajax({
+				url:"${APP_PATH}/emp/" + empId,
+				type:"DELETE",
+				success:function () {
+					to_page(currentPage);
+				}
+			});
+		}
+	});
+	/**
+	* @Description 全选全不选
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/4 16:14
+	*/
+	$("#check_all").click(function () {
+		$(".check_item").prop("checked", $(this).prop("checked"));
+	});
+	$(document).on("click", ".checked_item", function () {
+		var flag = $(".check_item:checked").length === $(".check_item").length;
+		$("#check_all").prop("checked", flag);
+	});
+	/**
+	* @Description 批量删除
+	* @Return
+	* @Author 脱氧核糖
+	* @Date 2021/6/4 16:20
+	*/
+	$("#emp_delete_all_btn").click(function(){
+		var empNames = "";
+		var del_id = "";
+		$.each($(".check_item:checked"), function () {
+			empNames += $(this).parents("tr").find("td:eq(2)").text() + ",";
+			del_id += $(this).parents("tr").find("td:eq(1)").text() + "-";
+		});
+		empNames = empNames.substring(0, empNames.length - 1);
+		del_id = del_id.substring(0, del_id.length - 1);
+		if(confirm("确认删除【" + empNames + "】？")){
+			$.ajax({
+				url:"${APP_PATH}/emp/"+del_id,
+				type:"DELETE",
+				success:function(){
+					to_page(currentPage);
+				}
+			});
+		}
 	});
 </script>
 </body>

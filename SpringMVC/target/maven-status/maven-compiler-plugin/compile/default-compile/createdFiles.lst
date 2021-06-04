@@ -1,11 +1,11 @@
 DNA\service\impl\UserServiceImpl.class
 DNA\listener\ContextLoaderListener.class
-DNA\dao\UserDao.class
 DNA\controller\UserController.class
-DNA\dao\impl\UserDaoImpl.class
+DNA\mapper\UserDao.class
 DNA\converter\DateConverter.class
 DNA\domain\VO.class
 DNA\listener\WebApplicationContextUtils.class
+DNA\mapper\impl\UserDaoImpl.class
 DNA\web\UserServlet.class
 DNA\service\UserService.class
 DNA\domain\User.class

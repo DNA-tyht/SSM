@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">email</label>
                         <div class="col-sm-10">
-                            <input type="text" name="email" class="form-control" id="email_update_input" placeholder="email@atguigu.com">
+                            <input type="text" name="email" class="form-control" id="email_update_input" placeholder="email@DNA.com">
                             <span class="help-block"></span>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">deptName</label>
                         <div class="col-sm-4">
-                            <select class="form-control" name="dId" id="dept_add_select">
+                            <select class="form-control" name="dId">
                             </select>
                         </div>
                     </div>
